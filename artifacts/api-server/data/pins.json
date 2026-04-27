@@ -1,0 +1,482 @@
+[
+  {
+    "id": "ugent",
+    "name": "Ghent University",
+    "type": "university",
+    "description": "Ghent University is a public research university located in Ghent, Belgium. A founding member of garagErasmus Foundation.",
+    "website": "https://www.ugent.be",
+    "longitude": 3.72,
+    "latitude": 51.05
+  },
+  {
+    "id": "kuleuven",
+    "name": "KU Leuven",
+    "type": "university",
+    "description": "KU Leuven is a research university in Leuven, Belgium, and one of the oldest universities in the Low Countries.",
+    "website": "https://www.kuleuven.be",
+    "longitude": 4.7,
+    "latitude": 50.88
+  },
+  {
+    "id": "unibo",
+    "name": "University of Bologna",
+    "type": "university",
+    "description": "The University of Bologna is the oldest university in the world. A key garagErasmus partner in Italy.",
+    "website": "https://www.unibo.it",
+    "longitude": 11.34,
+    "latitude": 44.49
+  },
+  {
+    "id": "polimi",
+    "name": "Politecnico di Milano",
+    "type": "university",
+    "description": "Politecnico di Milano is a scientific-technological university in Milan, Italy, and a garagErasmus partner.",
+    "website": "https://www.polimi.it",
+    "longitude": 9.22,
+    "latitude": 45.48
+  },
+  {
+    "id": "bocconi",
+    "name": "Bocconi University",
+    "type": "university",
+    "description": "Bocconi University is a private university in Milan, Italy, specializing in economics, management, law, and political science.",
+    "website": "https://www.unibocconi.it",
+    "longitude": 9.19,
+    "latitude": 45.46
+  },
+  {
+    "id": "sapienza",
+    "name": "Sapienza University of Rome",
+    "type": "university",
+    "description": "Sapienza University of Rome is one of the largest universities in Europe and a garagErasmus Foundation member.",
+    "website": "https://www.uniroma1.it",
+    "longitude": 12.51,
+    "latitude": 41.9
+  },
+  {
+    "id": "unipd",
+    "name": "University of Padova",
+    "type": "university",
+    "description": "The University of Padova is one of the world's oldest universities, located in Padova, Italy.",
+    "website": "https://www.unipd.it",
+    "longitude": 11.88,
+    "latitude": 45.41
+  },
+  {
+    "id": "uniroma3",
+    "name": "Roma Tre University",
+    "type": "university",
+    "description": "Roma Tre University is a public research university in Rome, Italy, and a garagErasmus member.",
+    "website": "https://www.uniroma3.it",
+    "longitude": 12.47,
+    "latitude": 41.85
+  },
+  {
+    "id": "univr",
+    "name": "University of Verona",
+    "type": "university",
+    "description": "The University of Verona is a public university in Verona, Italy.",
+    "website": "https://www.univr.it",
+    "longitude": 10.99,
+    "latitude": 45.44
+  },
+  {
+    "id": "lmu",
+    "name": "LMU Munich",
+    "type": "university",
+    "description": "Ludwig Maximilian University of Munich is one of Germany's oldest and most prestigious universities.",
+    "website": "https://www.lmu.de",
+    "longitude": 11.58,
+    "latitude": 48.15
+  },
+  {
+    "id": "tu-berlin",
+    "name": "TU Berlin",
+    "type": "university",
+    "description": "Technische Universität Berlin is a public research university in Berlin, Germany.",
+    "website": "https://www.tu.berlin",
+    "longitude": 13.33,
+    "latitude": 52.51
+  },
+  {
+    "id": "warsaw",
+    "name": "University of Warsaw",
+    "type": "university",
+    "description": "The University of Warsaw is the largest university in Poland and a garagErasmus Foundation member.",
+    "website": "https://www.uw.edu.pl",
+    "longitude": 21.02,
+    "latitude": 52.24
+  },
+  {
+    "id": "bucharest",
+    "name": "University of Bucharest",
+    "type": "university",
+    "description": "The University of Bucharest is a public university in Bucharest, Romania, and a key garagErasmus partner.",
+    "website": "https://www.unibuc.ro",
+    "longitude": 26.1,
+    "latitude": 44.44
+  },
+  {
+    "id": "kiev",
+    "name": "Taras Shevchenko National University of Kyiv",
+    "type": "university",
+    "description": "One of the leading universities in Ukraine, and a garagErasmus Eastern European partner.",
+    "website": "https://www.knu.ua",
+    "longitude": 30.52,
+    "latitude": 50.45
+  },
+  {
+    "id": "athens",
+    "name": "National and Kapodistrian University of Athens",
+    "type": "university",
+    "description": "The National and Kapodistrian University of Athens is the oldest university in Greece and a garagErasmus member.",
+    "website": "https://www.uoa.gr",
+    "longitude": 23.73,
+    "latitude": 37.98
+  },
+  {
+    "id": "barcelona-ub",
+    "name": "University of Barcelona",
+    "type": "university",
+    "description": "The University of Barcelona is a public university and the main university in Barcelona, Spain.",
+    "website": "https://www.ub.edu",
+    "longitude": 2.17,
+    "latitude": 41.39
+  },
+  {
+    "id": "paris",
+    "name": "Université Paris 1 Panthéon-Sorbonne",
+    "type": "university",
+    "description": "Université Paris 1 Panthéon-Sorbonne is a public research university in Paris, France.",
+    "website": "https://www.pantheonsorbonne.fr",
+    "longitude": 2.35,
+    "latitude": 48.85
+  },
+  {
+    "id": "sofia",
+    "name": "Sofia University",
+    "type": "university",
+    "description": "Sofia University 'St. Kliment Ohridski' is the oldest higher education institution in Bulgaria.",
+    "website": "https://www.uni-sofia.bg",
+    "longitude": 23.32,
+    "latitude": 42.7
+  },
+  {
+    "id": "belgrade",
+    "name": "University of Belgrade",
+    "type": "university",
+    "description": "The University of Belgrade is the largest university in Serbia and a garagErasmus partner.",
+    "website": "https://www.bg.ac.rs",
+    "longitude": 20.47,
+    "latitude": 44.8
+  },
+  {
+    "id": "zagreb",
+    "name": "University of Zagreb",
+    "type": "university",
+    "description": "The University of Zagreb is the oldest and largest Croatian university and a garagErasmus Foundation member.",
+    "website": "https://www.unizg.hr",
+    "longitude": 16,
+    "latitude": 45.81
+  },
+  {
+    "id": "istanbul",
+    "name": "Bogazici University",
+    "type": "university",
+    "description": "Bogazici University is one of Turkey's most prestigious universities, located in Istanbul.",
+    "website": "https://www.boun.edu.tr",
+    "longitude": 29.05,
+    "latitude": 41.08
+  },
+  {
+    "id": "vilnius",
+    "name": "Vilnius University",
+    "type": "university",
+    "description": "Vilnius University is the oldest and largest university in Lithuania and a garagErasmus Foundation member.",
+    "website": "https://www.vu.lt",
+    "longitude": 25.28,
+    "latitude": 54.69
+  },
+  {
+    "id": "amsterdam",
+    "name": "University of Amsterdam",
+    "type": "university",
+    "description": "The University of Amsterdam is a public research university and one of the most prestigious universities in the Netherlands.",
+    "website": "https://www.uva.nl",
+    "longitude": 4.9,
+    "latitude": 52.37
+  },
+  {
+    "id": "lisbon",
+    "name": "Universidade de Lisboa",
+    "type": "university",
+    "description": "The University of Lisbon is the largest university in Portugal and a garagErasmus partner.",
+    "website": "https://www.ulisboa.pt",
+    "longitude": -9.14,
+    "latitude": 38.72
+  },
+  {
+    "id": "ge4-brussels",
+    "name": "gE4Brussels",
+    "type": "ge4city",
+    "description": "gE4Brussels is the garagErasmus local chapter in Brussels, Belgium, connecting Erasmus students with local opportunities and fostering a community of young Europeans.",
+    "longitude": 4.35,
+    "latitude": 50.85
+  },
+  {
+    "id": "ge4-milan",
+    "name": "gE4Milan",
+    "type": "ge4city",
+    "description": "gE4Milan is the garagErasmus local chapter in Milan, Italy. It connects international students with the vibrant Milanese startup and cultural scene.",
+    "longitude": -0.8530994070046637,
+    "latitude": 41.117017499800546
+  },
+  {
+    "id": "ge4-rome",
+    "name": "gE4Rome",
+    "type": "ge4city",
+    "description": "gE4Rome brings together Erasmus students in the Italian capital, organizing events, networking opportunities, and cultural experiences.",
+    "longitude": -5.859545102662924,
+    "latitude": 40.1294960146846
+  },
+  {
+    "id": "ge4-berlin",
+    "name": "gE4Berlin",
+    "type": "ge4city",
+    "description": "gE4Berlin is the garagErasmus local chapter in Berlin, Germany's capital, fostering connections between international students and the local community.",
+    "longitude": 13.41,
+    "latitude": 52.52
+  },
+  {
+    "id": "ge4-barcelona",
+    "name": "gE4Barcelona",
+    "type": "ge4city",
+    "description": "gE4Barcelona connects Erasmus students in one of Europe's most vibrant cities, organizing events and fostering entrepreneurial thinking.",
+    "longitude": -6.9407268479233,
+    "latitude": 38.7150716273623
+  },
+  {
+    "id": "ge4-madrid",
+    "name": "gE4Madrid",
+    "type": "ge4city",
+    "description": "gE4Madrid is the garagErasmus local chapter in the Spanish capital, bringing Erasmus students together for cultural and professional networking.",
+    "longitude": -3.7,
+    "latitude": 40.42
+  },
+  {
+    "id": "ge4-paris",
+    "name": "gE4Paris",
+    "type": "ge4city",
+    "description": "gE4Paris connects international students in the French capital with local initiatives, events, and the garagErasmus network.",
+    "longitude": 2.35,
+    "latitude": 48.86
+  },
+  {
+    "id": "ge4-warsaw",
+    "name": "gE4Warsaw",
+    "type": "ge4city",
+    "description": "gE4Warsaw is the garagErasmus local chapter in Poland's capital, organizing events and fostering connections among Erasmus students.",
+    "longitude": 21.02,
+    "latitude": 52.23
+  },
+  {
+    "id": "ge4-budapest",
+    "name": "gE4Budapest",
+    "type": "ge4city",
+    "description": "gE4Budapest connects Erasmus students in Hungary's vibrant capital with local cultural and professional opportunities.",
+    "longitude": 19.04,
+    "latitude": 47.5
+  },
+  {
+    "id": "ge4-athens",
+    "name": "gE4Athens",
+    "type": "ge4city",
+    "description": "gE4Athens is the garagErasmus local chapter in Greece's capital, building bridges between international students and Greek culture.",
+    "longitude": 23.73,
+    "latitude": 37.97
+  },
+  {
+    "id": "ge4-lisbon",
+    "name": "gE4Lisbon",
+    "type": "ge4city",
+    "description": "gE4Lisbon connects Erasmus students in Portugal's capital with local initiatives, events, and the vibrant Lisbon startup scene.",
+    "longitude": -8.31701522882801,
+    "latitude": 37.84441163529324
+  },
+  {
+    "id": "ge4-istanbul",
+    "name": "gE4Istanbul",
+    "type": "ge4city",
+    "description": "gE4Istanbul is the garagErasmus local chapter connecting students at the crossroads of Europe and Asia.",
+    "longitude": 29.01,
+    "latitude": 41.01
+  },
+  {
+    "id": "ge4-bucharest",
+    "name": "gE4Bucharest",
+    "type": "ge4city",
+    "description": "gE4Bucharest connects Erasmus students in Romania's capital with cultural events, networking, and the local garagErasmus community.",
+    "longitude": 26.1,
+    "latitude": 44.43
+  },
+  {
+    "id": "ge4-zagreb",
+    "name": "gE4Zagreb",
+    "type": "ge4city",
+    "description": "gE4Zagreb is the garagErasmus local chapter in Croatia's capital, fostering connections and community among international students.",
+    "longitude": 16,
+    "latitude": 45.8
+  },
+  {
+    "id": "ge4-sofia",
+    "name": "gE4Sofia",
+    "type": "ge4city",
+    "description": "gE4Sofia connects Erasmus students in Bulgaria's capital, organizing events and building the local garagErasmus community.",
+    "longitude": 23.33,
+    "latitude": 42.7
+  },
+  {
+    "id": "ge4-amsterdam",
+    "name": "gE4Amsterdam",
+    "type": "ge4city",
+    "description": "gE4Amsterdam brings together Erasmus students in one of Europe's most international cities, fostering community and cultural exchange.",
+    "longitude": 4.9,
+    "latitude": 52.37
+  },
+  {
+    "id": "ge4-valencia",
+    "name": "gE4Valencia",
+    "type": "ge4city",
+    "description": "gE4Valencia is the garagErasmus local chapter in Valencia, Spain, known for its vibrant student life and innovation scene.",
+    "longitude": -1.491482442193795,
+    "latitude": 37.35283958295653
+  },
+  {
+    "id": "ge4-granada",
+    "name": "gE4Granada",
+    "type": "ge4city",
+    "description": "gE4Granada is the garagErasmus chapter in Granada, one of the most popular Erasmus destinations in Spain.",
+    "longitude": -4.328986744747911,
+    "latitude": 38.375732577204495
+  },
+  {
+    "id": "ge4-bologna",
+    "name": "gE4Bologna",
+    "type": "ge4city",
+    "description": "gE4Bologna connects Erasmus students in the Italian city that hosts Europe's oldest university.",
+    "longitude": 11.34,
+    "latitude": 44.49
+  },
+  {
+    "id": "ge4-florence",
+    "name": "gE4Florence",
+    "type": "ge4city",
+    "description": "gE4Florence is the garagErasmus local chapter in one of Italy's most beautiful cities, in the heart of Tuscany.",
+    "longitude": -2.0736329236167625,
+    "latitude": 39.71534068697839
+  },
+  {
+    "id": "ge4-padova",
+    "name": "gE4Padova",
+    "type": "ge4city",
+    "description": "gE4Padova connects international students in Padova, Italy, home to one of Europe's oldest universities.",
+    "longitude": 11.88,
+    "latitude": 45.41
+  },
+  {
+    "id": "ge4-vilnius",
+    "name": "gE4Vilnius",
+    "type": "ge4city",
+    "description": "gE4Vilnius is the garagErasmus local chapter in Lithuania's capital, one of the most underrated Erasmus destinations in Europe.",
+    "longitude": 25.28,
+    "latitude": 54.69
+  },
+  {
+    "id": "ge4-tallinn",
+    "name": "gE4Tallinn",
+    "type": "ge4city",
+    "description": "gE4Tallinn connects Erasmus students in Estonia's medieval capital, known for its digital innovation and vibrant student life.",
+    "longitude": 24.75,
+    "latitude": 59.44
+  },
+  {
+    "id": "ge4-lyon",
+    "name": "gE4Lyon",
+    "type": "ge4city",
+    "description": "gE4Lyon is the garagErasmus chapter in Lyon, France's gastronomic capital and major student city.",
+    "longitude": 4.83,
+    "latitude": 45.75
+  },
+  {
+    "id": "ge4-prague",
+    "name": "gE4Prague",
+    "type": "ge4city",
+    "description": "gE4Prague connects Erasmus students in the Czech capital, one of Europe's most beautiful and popular Erasmus destinations.",
+    "longitude": 14.42,
+    "latitude": 50.09
+  },
+  {
+    "id": "ge4-krakow",
+    "name": "gE4Krakow",
+    "type": "ge4city",
+    "description": "gE4Krakow is the garagErasmus chapter in Poland's cultural capital, known for its rich history and vibrant university life.",
+    "longitude": 19.94,
+    "latitude": 50.06
+  },
+  {
+    "id": "ge4-armenia",
+    "name": "gE4Yerevan",
+    "type": "ge4city",
+    "description": "gE4Yerevan is the garagErasmus chapter in Armenia's capital, fostering international connections and European spirit in the South Caucasus.",
+    "longitude": 44.5,
+    "latitude": 40.18,
+    "panel": "armenia"
+  },
+  {
+    "id": "ge4-colombia",
+    "name": "gE4Bogota",
+    "type": "ge4city",
+    "description": "gE4Bogota is the garagErasmus chapter in Colombia's capital, connecting students to the garagErasmus global network in Latin America.",
+    "longitude": -74.07,
+    "latitude": 4.71,
+    "panel": "colombia"
+  },
+  {
+    "id": "ge4-azerbaijan",
+    "name": "gE4Baku",
+    "type": "ge4city",
+    "description": "gE4Baku is the garagErasmus chapter in Azerbaijan's capital, bridging Eastern and Western student communities through the garagErasmus network.",
+    "longitude": 49.87,
+    "latitude": 40.41,
+    "panel": "azerbaijan"
+  },
+  {
+    "id": "ge4-georgia",
+    "name": "gE4Tbilisi",
+    "type": "ge4city",
+    "description": "gE4Tbilisi is the garagErasmus local chapter in Georgia's capital, connecting students to Europe and the global garagErasmus community.",
+    "longitude": 44.83,
+    "latitude": 41.69,
+    "panel": "georgia"
+  },
+  {
+    "id": "univ-armenia",
+    "name": "Yerevan State University",
+    "type": "university",
+    "description": "Yerevan State University is the main university of Armenia and a garagErasmus partner institution in the South Caucasus region.",
+    "website": "https://www.ysu.am",
+    "longitude": 44.51,
+    "latitude": 40.19,
+    "panel": "armenia"
+  },
+  {
+    "id": "univ-georgia",
+    "name": "Tbilisi State University",
+    "type": "university",
+    "description": "Ivane Javakhishvili Tbilisi State University is the oldest and largest university in Georgia and a garagErasmus Foundation member.",
+    "website": "https://www.tsu.ge",
+    "longitude": 44.8,
+    "latitude": 41.7,
+    "panel": "georgia"
+  }
+]

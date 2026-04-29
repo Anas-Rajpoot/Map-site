@@ -162,7 +162,7 @@ export default function MapPage() {
           </div>
           <div>
             <h1 className="text-white font-bold text-base leading-none">garagErasmus Network</h1>
-            <p className="text-blue-300 text-xs">Interactive Globe</p>
+            <p className="text-blue-300 text-xs">Interactive Map</p>
           </div>
         </div>
 
@@ -198,7 +198,7 @@ export default function MapPage() {
             EDIT MODE:
           </span>
           <span className="text-xs text-yellow-800 hidden md:inline">
-            Drag globe to rotate · Drag pin to reposition · Click pin to edit content
+            Drag map to pan · Drag pin to reposition · Click pin to edit content
           </span>
           <div className="flex items-center gap-1.5 ml-auto">
             <button onClick={handleAddPin} className="px-2.5 py-1 rounded-lg text-xs font-bold text-white" style={{ backgroundColor: "#1e3a6e" }}>
@@ -238,7 +238,7 @@ export default function MapPage() {
             </button>
           ))}
           <span className="text-blue-300 text-xs ml-auto hidden sm:inline">
-            Scroll to zoom · Drag to rotate
+            Scroll to zoom · Drag to pan
           </span>
         </div>
       )}
@@ -296,7 +296,7 @@ export default function MapPage() {
                 <div>
                   <p className="text-sm font-semibold text-gray-600">Click a pin to edit</p>
                   <p className="text-xs text-gray-400 mt-1 leading-relaxed">
-                    Drag any pin on the globe to reposition it
+                    Drag any pin on the map to reposition it
                   </p>
                 </div>
               </div>
@@ -332,8 +332,8 @@ export default function MapPage() {
       >
         <p className="text-blue-300 text-xs">
           {editMode
-            ? "Edit mode · changes saved automatically · rotate globe to see all members worldwide"
-            : "garagErasmus Foundation · Hover any pin · Scroll to zoom · Drag to explore the globe"}
+            ? "Edit mode · changes saved automatically · pan the map to see all members worldwide"
+            : "garagErasmus Foundation · Hover any pin · Scroll to zoom · Drag to pan the map"}
         </p>
       </footer>
     </div>

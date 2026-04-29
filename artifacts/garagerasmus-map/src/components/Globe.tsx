@@ -6,7 +6,7 @@ import type { Member } from "@/data/members";
 const LAND_COLOR = "#3399cc";
 const OCEAN_COLOR = "#f2f8fd";
 const BORDER_COLOR = "rgba(255,255,255,0.75)";
-const GLOBE_STROKE = "#ccdde8";
+const GRATICULE_COLOR = "rgba(51,153,204,0.13)";
 const WORLD_ATLAS = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
 
 interface GlobeProps {
@@ -25,9 +25,9 @@ interface PinDatum extends Member {
 export function Globe({ members, editMode, selectedId, onSelect, onPositionChange }: GlobeProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [worldData, setWorldData] = useState<any>(null);
-  const [rotation, setRotation] = useState<[number, number, number]>([-15, -50, 0]);
+  const [translate, setTranslate] = useState<[number, number]>([0, 0]);
   const [zoom, setZoom] = useState(1);
-  const [size, setSize] = useState({ w: 800, h: 600 });
+  const [size, setSize] = useState({ w: 0, h: 0 });
   const [hovered, setHovered] = useState<string | null>(null);
 
   const dragging = useRef({
@@ -38,6 +38,22 @@ export function Globe({ members, editMode, selectedId, onSelect, onPositionChang
     moved: false,
   });
   const touchRef = useRef({ lastX: 0, lastY: 0, pinchDist: 0 });
+  const viewInitialized = useRef(false);
+
+  // Once the real container size is known, set initial zoom centred on Europe
+  useEffect(() => {
+    if (viewInitialized.current || size.w < 50) return;
+    viewInitialized.current = true;
+    const initZoom = 3;
+    const initProj = d3
+      .geoNaturalEarth1()
+      .scale((153 * size.w) / 960 * initZoom)
+      .translate([size.w / 2, size.h / 2]);
+    const europeCenter: [number, number] = [15, 50];
+    const [px, py] = initProj(europeCenter)!;
+    setZoom(initZoom);
+    setTranslate([size.w / 2 - px, size.h / 2 - py]);
+  }, [size]);
 
   // Container size observer
   useEffect(() => {
@@ -62,33 +78,31 @@ export function Globe({ members, editMode, selectedId, onSelect, onPositionChang
       );
   }, []);
 
-  const scale = useMemo(() => Math.min(size.w, size.h) * 0.44 * zoom, [size, zoom]);
-  const cx = size.w / 2;
-  const cy = size.h / 2;
-
+  // geoNaturalEarth1: scale=153 fills ~960px wide at zoom=1
   const projection = useMemo(
     () =>
       d3
-        .geoOrthographic()
-        .rotate(rotation)
-        .scale(scale)
-        .translate([cx, cy])
-        .clipAngle(90),
-    [rotation, scale, cx, cy]
+        .geoNaturalEarth1()
+        .scale((153 * size.w) / 960 * zoom)
+        .translate([size.w / 2 + translate[0], size.h / 2 + translate[1]]),
+    [size, zoom, translate]
   );
 
   const pathGen = useMemo(() => d3.geoPath(projection), [projection]);
 
-  const spherePath = useMemo(() => pathGen({ type: "Sphere" } as any) ?? "", [pathGen]);
-
-  const { countryPaths, borderPath } = useMemo(() => {
-    if (!worldData) return { countryPaths: [], borderPath: "" };
+  const { countryPaths, borderPath, graticulePath } = useMemo(() => {
+    if (!worldData) return { countryPaths: [], borderPath: "", graticulePath: "" };
     const feats = (feature(worldData, worldData.objects.countries) as any).features as any[];
-    const paths = feats.map((f, i) => ({ id: f.id ?? `c${i}`, d: pathGen(f) ?? "" })).filter((p) => p.d);
-    const border = pathGen(mesh(worldData, worldData.objects.countries as any, (a: any, b: any) => a !== b)) ?? "";
-    return { countryPaths: paths, borderPath: border };
+    const paths = feats
+      .map((f, i) => ({ id: f.id ?? `c${i}`, d: pathGen(f) ?? "" }))
+      .filter((p) => p.d);
+    const border =
+      pathGen(mesh(worldData, worldData.objects.countries as any, (a: any, b: any) => a !== b)) ?? "";
+    const grat = pathGen(d3.geoGraticule()()) ?? "";
+    return { countryPaths: paths, borderPath: border, graticulePath: grat };
   }, [worldData, pathGen]);
 
+  // Flat map: all points project correctly, no hemisphere check needed
   const pinData = useMemo<PinDatum[]>(() => {
     return members
       .map((m) => {
@@ -107,7 +121,7 @@ export function Globe({ members, editMode, selectedId, onSelect, onPositionChang
       const pinId = pinEl?.dataset?.pinId ?? null;
       dragging.current = {
         active: true,
-        pinId: pinId,
+        pinId,
         lastX: e.clientX,
         lastY: e.clientY,
         moved: false,
@@ -133,11 +147,7 @@ export function Globe({ members, editMode, selectedId, onSelect, onPositionChang
         const inv = projection.invert!([e.clientX - rect.left, e.clientY - rect.top]);
         if (inv) onPositionChange(pinId, inv[0], inv[1]);
       } else {
-        setRotation(([r0, r1, r2]) => [
-          r0 + dx * 0.35,
-          Math.max(-90, Math.min(90, r1 - dy * 0.35)),
-          r2,
-        ]);
+        setTranslate(([tx, ty]) => [tx + dx, ty + dy]);
       }
     },
     [editMode, projection, onPositionChange]
@@ -157,7 +167,7 @@ export function Globe({ members, editMode, selectedId, onSelect, onPositionChang
   const handleWheel = useCallback((e: React.WheelEvent) => {
     e.preventDefault();
     const factor = e.deltaY < 0 ? 1.12 : 0.89;
-    setZoom((z) => Math.max(0.4, Math.min(6, z * factor)));
+    setZoom((z) => Math.max(0.3, Math.min(12, z * factor)));
   }, []);
 
   // ── Touch events ─────────────────────────────────────────────
@@ -180,18 +190,14 @@ export function Globe({ members, editMode, selectedId, onSelect, onPositionChang
       const dy = e.touches[0].clientY - touchRef.current.lastY;
       touchRef.current.lastX = e.touches[0].clientX;
       touchRef.current.lastY = e.touches[0].clientY;
-      setRotation(([r0, r1, r2]) => [
-        r0 + dx * 0.4,
-        Math.max(-90, Math.min(90, r1 - dy * 0.4)),
-        r2,
-      ]);
+      setTranslate(([tx, ty]) => [tx + dx, ty + dy]);
     } else if (e.touches.length === 2) {
       const dx = e.touches[0].clientX - e.touches[1].clientX;
       const dy = e.touches[0].clientY - e.touches[1].clientY;
       const dist = Math.hypot(dx, dy);
       const factor = dist / (touchRef.current.pinchDist || dist);
       touchRef.current.pinchDist = dist;
-      setZoom((z) => Math.max(0.4, Math.min(6, z * factor)));
+      setZoom((z) => Math.max(0.3, Math.min(12, z * factor)));
     }
   }, []);
 
@@ -201,7 +207,7 @@ export function Globe({ members, editMode, selectedId, onSelect, onPositionChang
     <div
       ref={containerRef}
       className="relative w-full h-full select-none overflow-hidden"
-      style={{ background: "linear-gradient(135deg, #e8f4fd 0%, #f5faff 100%)" }}
+      style={{ background: OCEAN_COLOR }}
     >
       {/* Loading state */}
       {!worldData && (
@@ -212,13 +218,13 @@ export function Globe({ members, editMode, selectedId, onSelect, onPositionChang
               style={{ borderColor: "#dde8f0", borderTopColor: "#3399cc" }}
             />
             <p className="text-sm font-medium" style={{ color: "#3399cc" }}>
-              Loading globe…
+              Loading map…
             </p>
           </div>
         </div>
       )}
 
-      {/* SVG Globe */}
+      {/* SVG flat map */}
       <svg
         width={size.w}
         height={size.h}
@@ -232,58 +238,19 @@ export function Globe({ members, editMode, selectedId, onSelect, onPositionChang
         onTouchMove={handleTouchMove}
         onTouchEnd={() => { dragging.current.active = false; }}
       >
-        <defs>
-          {/* Globe drop shadow */}
-          <filter id="globeShadow" x="-30%" y="-30%" width="160%" height="160%">
-            <feDropShadow dx="0" dy="10" stdDeviation="18" floodColor="rgba(30,58,110,0.22)" />
-          </filter>
-          {/* Surface shine */}
-          <radialGradient id="shine" cx="38%" cy="32%" r="60%">
-            <stop offset="0%" stopColor="rgba(255,255,255,0.28)" />
-            <stop offset="60%" stopColor="rgba(255,255,255,0.04)" />
-            <stop offset="100%" stopColor="rgba(0,0,0,0.04)" />
-          </radialGradient>
-          {/* Atmosphere */}
-          <radialGradient id="atmo" cx="50%" cy="50%" r="50%">
-            <stop offset="88%" stopColor="transparent" />
-            <stop offset="100%" stopColor="rgba(51,153,204,0.18)" />
-          </radialGradient>
-          {/* Clip to sphere */}
-          <clipPath id="sphereClip">
-            <path d={spherePath} />
-          </clipPath>
-        </defs>
+        {/* Ocean background */}
+        <rect x={0} y={0} width={size.w} height={size.h} fill={OCEAN_COLOR} />
 
-        {/* Outer atmosphere ring */}
-        <circle cx={cx} cy={cy} r={scale + 6} fill="url(#atmo)" pointerEvents="none" />
-
-        {/* Drop shadow (fake shadow below globe) */}
-        <ellipse
-          cx={cx}
-          cy={cy + scale * 0.72}
-          rx={scale * 0.7}
-          ry={scale * 0.08}
-          fill="rgba(30,58,110,0.12)"
-        />
-
-        {/* Ocean (sphere background) */}
-        <path d={spherePath} fill={OCEAN_COLOR} filter="url(#globeShadow)" />
+        {/* Graticule (subtle grid lines) */}
+        <path d={graticulePath} fill="none" stroke={GRATICULE_COLOR} strokeWidth="0.5" />
 
         {/* Land (countries) */}
-        <g clipPath="url(#sphereClip)">
-          {countryPaths.map(({ id, d }) => (
-            <path key={id} d={d} fill={LAND_COLOR} />
-          ))}
-        </g>
+        {countryPaths.map(({ id, d }) => (
+          <path key={id} d={d} fill={LAND_COLOR} />
+        ))}
 
         {/* Country borders */}
-        <path d={borderPath} fill="none" stroke={BORDER_COLOR} strokeWidth="0.65" clipPath="url(#sphereClip)" />
-
-        {/* Sphere outline */}
-        <path d={spherePath} fill="none" stroke={GLOBE_STROKE} strokeWidth="1.5" />
-
-        {/* Surface shine overlay */}
-        <path d={spherePath} fill="url(#shine)" pointerEvents="none" />
+        <path d={borderPath} fill="none" stroke={BORDER_COLOR} strokeWidth="0.55" />
 
         {/* ── Pins ── */}
         {pinData.map((pin) => {
@@ -291,14 +258,12 @@ export function Globe({ members, editMode, selectedId, onSelect, onPositionChang
           const isHov = hovered === pin.id;
           const isUniversity = pin.type === "university";
           const pinColor = isUniversity ? "#1e3a6e" : "#f5c518";
-          // Base size: circle radius R and total height H
           const baseR = isSelected ? 11 : isHov ? 10 : 8.5;
-          const R = baseR;          // circle radius
-          const H = R * 2.55;       // total pin height (tip to top)
-          const cy0 = -(H - R);     // circle center Y in local coords (tip at 0,0)
-          const holeR = R * 0.38;   // white hole radius
+          const R = baseR;
+          const H = R * 2.55;
+          const cy0 = -(H - R);
+          const holeR = R * 0.38;
 
-          // Classic map-pin path: tip at (0,0), circle at top
           const pinPath = `
             M 0,0
             C ${-R * 0.82},${H * -0.28}  ${-R},${H * -0.48}  ${-R},${cy0}
@@ -317,7 +282,6 @@ export function Globe({ members, editMode, selectedId, onSelect, onPositionChang
               onMouseLeave={() => setHovered(null)}
               transform={`translate(${pin.sx}, ${pin.sy}) scale(${scaleFactor})`}
             >
-              {/* Ground shadow ellipse */}
               <ellipse
                 cx={0}
                 cy={1.5}
@@ -326,7 +290,6 @@ export function Globe({ members, editMode, selectedId, onSelect, onPositionChang
                 fill="rgba(0,0,0,0.22)"
                 pointerEvents="none"
               />
-              {/* Pin outer shape */}
               <path
                 d={pinPath}
                 fill={pinColor}
@@ -340,7 +303,6 @@ export function Globe({ members, editMode, selectedId, onSelect, onPositionChang
                     : "drop-shadow(0 2px 4px rgba(0,0,0,0.28))",
                 }}
               />
-              {/* White circle hole (like reference image) */}
               <circle
                 cx={0}
                 cy={cy0}
@@ -363,7 +325,6 @@ export function Globe({ members, editMode, selectedId, onSelect, onPositionChang
             transform: "translate(-50%, -100%)",
             width: 250,
           }}
-          onMouseLeave={() => setHovered(null)}
         >
           <div
             className="rounded-xl shadow-2xl overflow-hidden"
@@ -408,7 +369,6 @@ export function Globe({ members, editMode, selectedId, onSelect, onPositionChang
               )}
             </div>
           </div>
-          {/* Caret */}
           <div
             style={{
               position: "absolute",
@@ -431,15 +391,15 @@ export function Globe({ members, editMode, selectedId, onSelect, onPositionChang
           className="absolute top-3 left-1/2 -translate-x-1/2 rounded-full px-3 py-1.5 text-xs font-semibold pointer-events-none z-50 whitespace-nowrap"
           style={{ backgroundColor: "rgba(30,58,110,0.88)", color: "#f5c518" }}
         >
-          Drag globe to rotate · Drag a pin to move it · Click pin to edit
+          Drag map to pan · Drag a pin to move it · Click pin to edit
         </div>
       )}
 
       {/* ── Zoom controls ── */}
       <div className="absolute bottom-4 right-4 flex flex-col gap-1.5 z-40">
         {[
-          { label: "+", action: () => setZoom((z) => Math.min(6, z * 1.3)) },
-          { label: "−", action: () => setZoom((z) => Math.max(0.4, z * 0.77)) },
+          { label: "+", action: () => setZoom((z) => Math.min(12, z * 1.3)) },
+          { label: "−", action: () => setZoom((z) => Math.max(0.3, z * 0.77)) },
         ].map(({ label, action }) => (
           <button
             key={label}
@@ -451,7 +411,16 @@ export function Globe({ members, editMode, selectedId, onSelect, onPositionChang
           </button>
         ))}
         <button
-          onClick={() => { setZoom(1); setRotation([-15, -50, 0]); }}
+          onClick={() => {
+            const initZoom = 3;
+            const initProj = d3
+              .geoNaturalEarth1()
+              .scale((153 * size.w) / 960 * initZoom)
+              .translate([size.w / 2, size.h / 2]);
+            const [px, py] = initProj([15, 50] as [number, number])!;
+            setZoom(initZoom);
+            setTranslate([size.w / 2 - px, size.h / 2 - py]);
+          }}
           className="w-9 h-9 rounded-xl flex items-center justify-center text-base shadow-md transition-opacity hover:opacity-80"
           style={{ backgroundColor: "rgba(255,255,255,0.92)", color: "#1e3a6e", border: "1px solid #dde8f0" }}
           title="Reset view"

@@ -1,19 +1,19 @@
 [
   {
     "id": "kuleuven",
-    "name": "KU Leuven",
+    "name": "University of Pisa",
     "type": "university",
-    "description": "KU Leuven is a research university in Leuven, Belgium, and one of the oldest universities in the Low Countries.",
-    "website": "https://www.kuleuven.be",
+    "description": "A historic Italian university known for strong research, innovation, and excellence in science, engineering, and humanities.",
+    "website": "https://www.unipi.it/",
     "longitude": 10.965219180246558,
     "latitude": 43.74143981427506
   },
   {
     "id": "polimi",
-    "name": "Politecnico di Milano",
+    "name": "Università Suor Orsola Benincasa",
     "type": "university",
-    "description": "Politecnico di Milano is a scientific-technological university in Milan, Italy, and a garagErasmus partner.",
-    "website": "https://www.polimi.it",
+    "description": "A historic Italian university known for humanities, education, and social sciences with a strong cultural and academic tradition.",
+    "website": "https://www.unisob.na.it/",
     "longitude": 15.703071058379713,
     "latitude": 40.109316818549104
   },
@@ -37,28 +37,28 @@
   },
   {
     "id": "unipd",
-    "name": "University of Padova",
+    "name": "Humanitas Medical University",
     "type": "university",
-    "description": "The University of Padova is one of the world's oldest universities, located in Padova, Italy.",
-    "website": "https://www.unipd.it",
+    "description": "A leading medical university focused on clinical training, research, and innovation in healthcare education.",
+    "website": "https://www.hunimed.eu/",
     "longitude": 9.489837010081498,
     "latitude": 46.15675899826702
   },
   {
     "id": "bucharest",
-    "name": "University of Bucharest",
+    "name": "Roma 2 Tor Vergata",
     "type": "university",
-    "description": "The University of Bucharest is a public university in Bucharest, Romania, and a key garagErasmus partner.",
-    "website": "https://www.unibuc.ro",
+    "description": "A major Italian university known for strong research, international programs, and excellence in science, economics, and medicine.",
+    "website": "https://web.uniroma2.it/",
     "longitude": 14.421129735819003,
     "latitude": 40.60779937397913
   },
   {
     "id": "kiev",
-    "name": "Taras Shevchenko National University of Kyiv",
+    "name": "University of Poltava",
     "type": "university",
-    "description": "One of the leading universities in Ukraine, and a garagErasmus Eastern European partner.",
-    "website": "https://www.knu.ua",
+    "description": "A Ukrainian university known for economics, trade, and applied sciences with a focus on practical and international education.",
+    "website": "https://www.puet.edu.ua/",
     "longitude": 33.46209349712643,
     "latitude": 48.209687050548325
   },
@@ -82,12 +82,12 @@
   },
   {
     "id": "belgrade",
-    "name": "University of Belgrade",
+    "name": "University of Siena",
     "type": "university",
-    "description": "The University of Belgrade is the largest university in Serbia and a garagErasmus partner.",
-    "website": "https://www.bg.ac.rs",
-    "longitude": 12.972962209097947,
-    "latitude": 40.9594768665544
+    "description": "One of Italy’s oldest universities, renowned for its excellence in research, medicine, and humanities within a historic academic setting",
+    "website": "https://www.unisi.it/",
+    "longitude": 13.41919888797047,
+    "latitude": 41.03975354914262
   },
   {
     "id": "zagreb",
@@ -104,17 +104,17 @@
     "type": "university",
     "description": "A leading health sciences university known for international programs and strong focus on medical research and education.",
     "website": "https://www.rsu.lv/",
-    "longitude": 25.36236605602617,
-    "latitude": 54.61104585714439
+    "longitude": 25.520575754762778,
+    "latitude": 55.10636535520398
   },
   {
     "id": "amsterdam",
-    "name": "University of Amsterdam",
+    "name": "Università Ca' Foscari",
     "type": "university",
-    "description": "The University of Amsterdam is a public research university and one of the most prestigious universities in the Netherlands.",
-    "website": "https://www.uva.nl",
-    "longitude": 12.637082666556408,
-    "latitude": 44.38734346801922
+    "description": "A renowned Italian university specializing in humanities, economics, and languages with a strong international outlook.",
+    "website": "https://www.unive.it/",
+    "longitude": 12.023749701703343,
+    "latitude": 44.16617340422465
   },
   {
     "id": "lisbon",
@@ -366,16 +366,16 @@
     "type": "university",
     "description": "Yerevan State University is the main university of Armenia and a garagErasmus partner institution in the South Caucasus region.",
     "website": "https://www.ysu.am",
-    "longitude": 25.621415120954133,
-    "latitude": 46.65826231969367,
+    "longitude": 25.7330053790088,
+    "latitude": 46.868754412881046,
     "panel": "armenia"
   },
   {
     "id": "univ-georgia",
-    "name": "Tbilisi State University",
+    "name": "University of Craiova",
     "type": "university",
-    "description": "Ivane Javakhishvili Tbilisi State University is the oldest and largest university in Georgia and a garagErasmus Foundation member.",
-    "website": "https://www.tsu.ge",
+    "description": "A well-established Romanian university known for its diverse academic programs, research activity, and growing international community.",
+    "website": "https://www.ucv.ro/",
     "longitude": 25.217314744459866,
     "latitude": 44.38734346801922,
     "panel": "georgia"
